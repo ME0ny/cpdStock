@@ -1,0 +1,10 @@
+<!-- templates/search_results.html -->
+<h1>Search Results</h1>
+ 
+<ul>
+  {% for city in object_list %}
+    <li>
+      {{ city.tittle }},{{city.position_X}},{{city.position_Y}},{{city.position_Z}}
+    </li>
+  {% endfor %}
+</ul>
