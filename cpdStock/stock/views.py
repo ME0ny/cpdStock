@@ -22,17 +22,18 @@ class SearchResultsView(ListModelMixin, GenericAPIView):
                         Q(tittle__icontains=query['q']))
                 elif(query['q']=='' and queryM['X']!=0 and queryM['Y']==0):
                     object_list = Stuff.objects.filter(
-                        Q(position_X__icontains=queryM['X']))
+                        Q(position_X__icontains=queryM['X'])).filter(position_X=queryM['X'])
                 elif(query['q']=='' and queryM['X']!=0 and queryM['Y']!=0 and queryM['Z']==0):
                     object_list = Stuff.objects.filter(
-                        Q(position_X__icontains=queryM['X'] & Q(position_Y__icontains=queryM['Y'])))
+                        Q(position_X__icontains=queryM['X']) & Q(position_Y__icontains=queryM['Y'])).filter(position_X=queryM['X']).filter(position_Y=queryM['Y'])
                 elif(query['q']=='' and queryM['X']!=0 and queryM['Y']!=0 and queryM['Z']!=0):
                     object_list = Stuff.objects.filter(
-                        Q(position_X__icontains=queryM['X'] & Q(position_Y__icontains=queryM['Y']) & Q(position_Z__icontains=queryM['Z'])))
+                        Q(position_X__icontains=queryM['X']) & Q(position_Y__icontains=queryM['Y']) & Q(position_Z__icontains=queryM['Z'])).filter(position_X=queryM['X']).filter(position_Y=queryM['Y']).filter(position_Z=queryM['Z'])
                 else:
                     object_list = Stuff.objects.all()
             except Exception as e:
                 print(e)
+                print(queryM)
                 object_list = Stuff.objects.all()
             return object_list
         return None
