@@ -5,5 +5,5 @@ from .views import SearchResultsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),  
-    path('search/', SearchResultsView.as_view(), name='search_results'),     
+    path('search/',SearchResultsView.as_view()),    
 ]
